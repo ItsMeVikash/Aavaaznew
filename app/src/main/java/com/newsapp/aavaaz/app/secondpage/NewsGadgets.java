@@ -109,12 +109,13 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
                 //                Intent Browser=new Intent(Intent.ACTION_VIEW,Uri.parse(url));
                 Intent Browser=new Intent(getApplicationContext(),Url.class);
                 Browser.putExtra("heading",heading.getText());
+               // Toast.makeText(getApplicationContext(),url,Toast.LENGTH_SHORT).show();
                 Browser.putExtra("url",url);
                 startActivity(Browser);
 
             }
         });
-
+//        Toast.makeText(getApplicationContext(),url,Toast.LENGTH_SHORT).show();
         // ================ DYNAMIC Content ===================== //
         DisplayMetrics displayMetrics=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -171,7 +172,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
 
 //[========================= Added Now
         //========================================
-  DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+  DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -265,7 +266,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -307,7 +308,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Upvoted").child("Gadgets").child(in);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Upvoted").child("Misc").child(in);
 
         mDatabase.setValue("UP VOTED").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -322,7 +323,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Downvoted").child("Gadgets").child(in);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Downvoted").child("Misc").child(in);
 
         mDatabase.setValue("Down VOTED").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -470,7 +471,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -597,7 +598,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -649,7 +650,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -696,7 +697,7 @@ public class NewsGadgets extends AppCompatActivity implements GestureDetector.On
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -791,7 +792,7 @@ private void geturl() {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -915,7 +916,7 @@ private void geturl() {
                 if(!dataSnapshot.exists()){  FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         i++;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -1037,7 +1038,7 @@ private void geturlr() {        String in=i+"";
                 if(!dataSnapshot.exists()){ FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         i--;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -1151,7 +1152,7 @@ private void geturlll() {        String in=i+"";
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 		i--;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
 
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -1180,7 +1181,7 @@ private void geturlll() {        String in=i+"";
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         i++;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Gadgets");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
