@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:text="कैटेगरी"
+        android:id="@+id/cat"
+        android:textSize="25sp"
+        android:fontFamily="@font/glegoo"/>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/cat"
+        android:id="@+id/scroll"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/home2"
+                android:id="@+id/homeis"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/homeis"
+        android:layout_alignRight="@id/homeis"
+        android:layout_alignBottom="@id/homeis"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="होम"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/politics2"
+                android:id="@+id/politics"
+                android:layout_height="150dp"/>
+
+            <TextView
+                android:id="@+id/myImageViewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/politics"
+                android:layout_alignRight="@id/politics"
+                android:layout_alignBottom="@id/politics"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:text="राजनीति"
+                android:textStyle="bold"
+                android:textColor="#ffffff" />
+        </RelativeLayout>
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/regional2"
+                android:id="@+id/business"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/business"
+        android:layout_alignRight="@id/business"
+        android:layout_alignBottom="@id/business"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="क्षेत्रीय"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+		
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/crime2"
+                android:id="@+id/international"
+                android:layout_height="150dp"/>
+
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/international"
+        android:layout_alignRight="@id/international"
+        android:layout_alignBottom="@id/international"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="अपराध"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+
+		<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/sports2"
+                android:id="@+id/sports"
+                android:layout_height="150dp"/>
+
+            <TextView
+                android:id="@+id/myImageViewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/sports"
+                android:layout_alignRight="@id/sports"
+                android:layout_alignBottom="@id/sports"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:text="खेल"
+                android:textStyle="bold"
+                android:textColor="#ffffff" />
+        </RelativeLayout>
+		
+
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/tech2"
+                android:id="@+id/education"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/education"
+        android:layout_alignRight="@id/education"
+        android:layout_alignBottom="@id/education"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="टैकनोलजी"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+<RelativeLayout
+            android:layout_width="match_parent"
+		    android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/entertainment2"
+                android:id="@+id/entertainment"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/entertainment"
+        android:layout_alignRight="@id/entertainment"
+        android:layout_alignBottom="@id/entertainment"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="मनोरंजन"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/life2"
+                android:id="@+id/lifestyle"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/lifestyle"
+        android:layout_alignRight="@id/lifestyle"
+        android:layout_alignBottom="@id/lifestyle"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="लाइफस्टाइल"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="7dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/misc2"
+                android:id="@+id/gadgets"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/gadgets"
+        android:layout_alignRight="@id/gadgets"
+        android:layout_alignBottom="@id/gadgets"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="विविध"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="3dp"
+		    android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:src="@drawable/viral2"
+                android:id="@+id/agriculture"
+                android:layout_height="150dp"/>
+    <TextView
+        android:id="@+id/myImageViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/agriculture"
+        android:layout_alignRight="@id/agriculture"
+        android:layout_alignBottom="@id/agriculture"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:text="वायरल"
+        android:textStyle="bold"
+        android:textColor="#ffffff" />
+        </RelativeLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroll"
+        android:id="@+id/text"
+        android:text="ट्रेंडिंग न्यूज़"
+        android:layout_margin="20dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/glegoo"
+        android:textStyle="bold"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/text"
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
