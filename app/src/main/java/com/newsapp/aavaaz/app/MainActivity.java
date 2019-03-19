@@ -103,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
                     userMap1.put("Education", "1");
                     userMap1.put("Entertainment", "1");
                     userMap1.put("Homeis", "1");
-                    userMap1.put("Gadgets", "1");
+                    userMap1.put("Misc", "1");
                     userMap1.put("International", "1");
                     userMap1.put("Lifestyle", "1");
-
+                    userMap1.put("Gadgets", "1");
                     mi.setValue(userMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
