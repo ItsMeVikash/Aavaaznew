@@ -403,13 +403,13 @@ alluserlist=(RecyclerView) findViewById(R.id.recycler);
     //here
 	Intent a;
 	 switch (head){
-                case "Home":a=new Intent(getApplicationContext(),Homeis.class);break;
+                case "Homeis":a=new Intent(getApplicationContext(),Homeis.class);break;
                 case "Sports":a=new Intent(getApplicationContext(),NewsSports.class);break;
                 case "Politics":a=new Intent(getApplicationContext(),NewsPolitics.class);break;
-                case "Technology":a=new Intent(getApplicationContext(),NewsEducation.class);break;
-                case "Misc":a=new Intent(getApplicationContext(),NewsGadgets.class);break;
-                case "Crime":a=new Intent(getApplicationContext(),NewsInternational.class);break;
-                case "Viral":a=new Intent(getApplicationContext(),NewsAgriculture.class);break;
+                case "Education":a=new Intent(getApplicationContext(),NewsEducation.class);break;
+                case "Gadgets":a=new Intent(getApplicationContext(),NewsGadgets.class);break;
+                case "International":a=new Intent(getApplicationContext(),NewsInternational.class);break;
+                case "Agriculture":a=new Intent(getApplicationContext(),NewsAgriculture.class);break;
                 case "Business":a=new Intent(getApplicationContext(),NewsBusiness.class);break;
                 case "Lifestyle":a=new Intent(getApplicationContext(),NewsLifestyle.class);break;
                 case "Entertainment":a=new Intent(getApplicationContext(),NewsEntertainment.class);break;
