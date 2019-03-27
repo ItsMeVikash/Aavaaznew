@@ -199,6 +199,7 @@ public class NewsSports extends AppCompatActivity implements GestureDetector.OnG
             @Override
             public void onClick(View v) {
                 Intent a=new Intent(getApplicationContext(),Home.class);
+				a.putExtra("ctegory","Sports");
                 startActivity(a);
             }
         });
@@ -1351,7 +1352,7 @@ private void geturlll() {
         return result;
     }
 
-    private void onSwipeRight() {
+    private void onSwipeTop() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
 
 
@@ -1380,7 +1381,7 @@ private void geturlll() {
 
     }
 
-    private void onSwipeLeft() {
+    private void onSwipeBottom() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
         //Toast.makeText(getApplicationContext(),"Sub Topic",//Toast.LENGTH_SHORT).show();
         incrementi();
@@ -1405,19 +1406,21 @@ private void geturlll() {
             }
         });
     }
-    private void onSwipeTop() {
-        Intent a=new Intent(getApplicationContext(),NewsEducation.class);     a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
+   private void onSwipeRight() {
+        Intent a=new Intent(getApplicationContext(),Home.class);
+		a.putExtra("ctegory","Sports");		// a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+		startActivity(a);
         //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
-        CustomIntent.customType(this,"bottom-to-up");
+        CustomIntent.customType(this,"left-to-right");
     }
-    private void onSwipeBottom() {
+    private void onSwipeLeft() {
         ////Toast.makeText(getApplicationContext(),"Top swipe",//Toast.LENGTH_SHORT).show();
-        Intent a=new Intent(getApplicationContext(),NewsInternational.class);
-		   a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
-        //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
-        CustomIntent.customType(this,"up-to-bottom");
-    }
-    private void right(){
+        Intent Browser=new Intent(getApplicationContext(),Url.class);
+                Browser.putExtra("heading",heading.getText());
+                Browser.putExtra("url",url);
+                startActivity(Browser);
+				CustomIntent.customType(this,"right-to-left");
+    } private void right(){
                Intent a=new Intent(getApplicationContext(),NewsInternational.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
         CustomIntent.customType(this,"right-to-left");
