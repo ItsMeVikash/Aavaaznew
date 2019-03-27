@@ -1,4 +1,70 @@
 package com.newsapp.aavaaz.app;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;import com.newsapp.aavaaz.app.Url;
+import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.MediaController;
+import android.widget.RelativeLayout;
+import android.widget.VideoView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import android.Manifest;
+
+import com.newsapp.aavaaz.app.Home;
+
+
+import com.newsapp.aavaaz.app.R;
+import com.newsapp.aavaaz.app.thirdpage.NewsGadgetsFull;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import maes.tech.intentanim.CustomIntent;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -38,7 +104,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     String pass = "123456789";
     static String url;
     TextView textView;
@@ -47,15 +113,21 @@ public class Home extends AppCompatActivity {
     DatabaseReference alluserdatabaseReference;
     ProgressDialog load;
     RecyclerView   alluserlist;
+	public static final int SWIPE_THRESHOLD = 100;
+    public static final int SWIPE_VELOCITY_THRESHOLD = 100;
+	private GestureDetector gestureDetector;
     Dialog dialog;
     TextView heading,shortdesc,text;
     ImageView sports,politics,education,entertainment,lifestyle,gadgets,agriculture,business,international,trendingimage,homeis;
     int i = 0;
-
+	public static String head;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		gestureDetector = new GestureDetector(this);
         setContentView(R.layout.activity_home);
+		head=getIntent().getExtras().get("category").toString();
+		
         //heading=findViewById(R.id.heading);
         load=new ProgressDialog(this);
 alluserlist=(RecyclerView) findViewById(R.id.recycler);
@@ -268,6 +340,111 @@ alluserlist=(RecyclerView) findViewById(R.id.recycler);
             });
         }
 
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent downevent, MotionEvent moveevent, float velocityX, float velocityY) {
+        boolean result=false;
+        float diffY=moveevent.getY() - downevent.getY();
+        float diffX=moveevent.getX() - downevent.getX();
+        if(Math.abs(diffX)>Math.abs(diffY)){
+            //right or left swipe
+            result=true;
+            if(Math.abs(diffX)>SWIPE_THRESHOLD && Math.abs(velocityX)>SWIPE_VELOCITY_THRESHOLD ){
+                if(diffX>0){onSwipeRight();}
+                else {onSwipeLeft();}
+
+            }
+
+        }
+        else{
+            //up or down swipe
+            result=true;
+            if(Math.abs(diffY)>SWIPE_THRESHOLD && Math.abs(velocityY)>SWIPE_VELOCITY_THRESHOLD){
+                if(diffY>0){onSwipeBottom();}
+                else{onSwipeTop();}
+            }
+        }
+
+        return result;
+    }
+
+    private void onSwipeRight() {
+        ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
+		
+    }
+
+    private void onSwipeLeft() {
+    //here
+	Intent a;
+	 switch (head){
+                case "Home":a=new Intent(getApplicationContext(),Homeis.class);break;
+                case "Sports":a=new Intent(getApplicationContext(),NewsSports.class);break;
+                case "Politics":a=new Intent(getApplicationContext(),NewsPolitics.class);break;
+                case "Technology":a=new Intent(getApplicationContext(),NewsEducation.class);break;
+                case "Misc":a=new Intent(getApplicationContext(),NewsGadgets.class);break;
+                case "Crime":a=new Intent(getApplicationContext(),NewsInternational.class);break;
+                case "Viral":a=new Intent(getApplicationContext(),NewsAgriculture.class);break;
+                case "Business":a=new Intent(getApplicationContext(),NewsBusiness.class);break;
+                case "Lifestyle":a=new Intent(getApplicationContext(),NewsLifestyle.class);break;
+                case "Entertainment":a=new Intent(getApplicationContext(),NewsEntertainment.class);break;
+                default:a=new Intent(getApplicationContext(),NewsSports.class);index="1";break;
+            }
+			startActivity(a);
+			CustomIntent.customType(this,"right-to-left");
+			
+    }
+
+    private void onSwipeTop() {
+        
+    }
+    private void onSwipeBottom() {
+    }
+	@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+
+        return false;
     }
 
 }

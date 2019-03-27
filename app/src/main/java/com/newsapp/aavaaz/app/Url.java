@@ -22,13 +22,83 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import com.newsapp.aavaaz.app.Url;
+import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.MediaController;
+import android.widget.RelativeLayout;
+import android.widget.VideoView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import android.Manifest;
+
+import com.newsapp.aavaaz.app.Home;
 
 
-public class Url extends AppCompatActivity{
+import com.newsapp.aavaaz.app.R;
+import com.newsapp.aavaaz.app.thirdpage.NewsGadgetsFull;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import maes.tech.intentanim.CustomIntent;
+
+
+public class Url extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     WebView web;
     ProgressBar mprogressbar;
     TextView text;
     String url,head;
+	public static final int SWIPE_THRESHOLD = 100;
+    public static final int SWIPE_VELOCITY_THRESHOLD = 100;
+    private GestureDetector gestureDetector;
     Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +106,7 @@ public class Url extends AppCompatActivity{
         setContentView(R.layout.activity_url);
         mprogressbar = (ProgressBar) findViewById(R.id.progressBar);
         btn=findViewById(R.id.btn);
+		gestureDetector = new GestureDetector(this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,8 +125,7 @@ public class Url extends AppCompatActivity{
         String finalis="";
         if(before==-1){finalis=url;}
         else{finalis=url.substring(0,before);}
-        String[] word=finalis.split(".",2);
-        finalis=word[1];
+     
         text.setText(finalis);
 
         WebSettings webSettings=web.getSettings();
@@ -128,4 +198,94 @@ public class Url extends AppCompatActivity{
         }
         return super.onKeyDown(keyCode, event);
     }
+	
+	
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent downevent, MotionEvent moveevent, float velocityX, float velocityY) {
+        boolean result=false;
+        float diffY=moveevent.getY() - downevent.getY();
+        float diffX=moveevent.getX() - downevent.getX();
+        if(Math.abs(diffX)>Math.abs(diffY)){
+            //right or left swipe
+            result=true;
+            if(Math.abs(diffX)>SWIPE_THRESHOLD && Math.abs(velocityX)>SWIPE_VELOCITY_THRESHOLD ){
+                if(diffX>0){onSwipeRight();}
+                else {onSwipeLeft();}
+
+            }
+
+        }
+        else{
+            //up or down swipe
+            result=true;
+            if(Math.abs(diffY)>SWIPE_THRESHOLD && Math.abs(velocityY)>SWIPE_VELOCITY_THRESHOLD){
+                if(diffY>0){onSwipeBottom();}
+                else{onSwipeTop();}
+            }
+        }
+
+        return result;
+    }
+
+    private void onSwipeRight() {
+        ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
+		web.goBack();
+    }
+
+    private void onSwipeLeft() {
+    
+    }
+
+    private void onSwipeTop() {
+        
+    }
+    private void onSwipeBottom() {
+    }
+	@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+
+        return false;
+    }
+
 }
