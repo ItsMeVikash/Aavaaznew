@@ -923,7 +923,7 @@ private void geturl() {
 
                 }
             }
-        }); Toast.makeText(getApplicationContext,"No Files Left",LENGTH_SHORT).show();        }
+        }); Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();        }
                 else{String value = dataSnapshot.getValue(String.class);
                     heading.setText(value);}
             }
@@ -1044,7 +1044,7 @@ private void geturlr() {        String in=i+"";
 
                 }
             }
-        }); Toast.makeText(getApplicationContext,"No Files Left",LENGTH_SHORT).show();       }
+        }); Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();       }
                 else{String value = dataSnapshot.getValue(String.class);
                     heading.setText(value);}
             }

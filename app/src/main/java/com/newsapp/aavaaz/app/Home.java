@@ -413,11 +413,11 @@ alluserlist=(RecyclerView) findViewById(R.id.recycler);
                 case "Business":a=new Intent(getApplicationContext(),NewsBusiness.class);break;
                 case "Lifestyle":a=new Intent(getApplicationContext(),NewsLifestyle.class);break;
                 case "Entertainment":a=new Intent(getApplicationContext(),NewsEntertainment.class);break;
-                default:a=new Intent(getApplicationContext(),NewsSports.class);index="1";break;
+                default:a=new Intent(getApplicationContext(),NewsSports.class);break;
             }
 			startActivity(a);
 			CustomIntent.customType(this,"right-to-left");
-			
+		
     }
 
     private void onSwipeTop() {
