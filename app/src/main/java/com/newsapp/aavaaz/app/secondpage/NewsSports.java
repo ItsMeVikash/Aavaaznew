@@ -67,6 +67,8 @@ import java.io.IOException;
 
 import maes.tech.intentanim.CustomIntent;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class NewsSports extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     FirebaseUser cu;
     String image1;
@@ -1131,6 +1133,7 @@ private void geturl() {
 
                 }
             }
+
         }); Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();        }
                 else{String value = dataSnapshot.getValue(String.class);
                     heading.setText(value);}
@@ -1462,7 +1465,7 @@ private void geturlll() {
     public void onBackPressed() {
         super.onBackPressed();
         tap++;
-        if(tap==1){Toast.makeText(getApplicationContext(),"Press Back Button Once more ..",Toast.LENGTH_SHORT).show();}
+        if(tap==1){Toast.makeText(getApplicationContext(),"Press Back Button Once more ..", LENGTH_SHORT).show();}
         if(tap>1){finish(); System.exit(0);}
     }
 

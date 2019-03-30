@@ -67,6 +67,8 @@ import java.io.IOException;
 
 import maes.tech.intentanim.CustomIntent;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class NewsGadgets extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     FirebaseUser cu;
     String image1;
@@ -1250,7 +1252,7 @@ private void onSwipeRight() {
     public void onBackPressed() {
         super.onBackPressed();
         tap++;
-        if(tap==1){Toast.makeText(getApplicationContext(),"Press Back Button Once more ..",Toast.LENGTH_SHORT).show();}
+        if(tap==1){Toast.makeText(getApplicationContext(),"Press Back Button Once more ..", LENGTH_SHORT).show();}
         if(tap>1){finish(); System.exit(0);}
     }
 
