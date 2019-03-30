@@ -126,14 +126,14 @@ public class Home extends AppCompatActivity implements GestureDetector.OnGesture
         super.onCreate(savedInstanceState);
 		gestureDetector = new GestureDetector(this);
         setContentView(R.layout.activity_home);
-		head=getIntent().getExtras().get("category").toString();
+		//head=getIntent().getExtras().get("ctegory").toString();
 		
         //heading=findViewById(R.id.heading);
         load=new ProgressDialog(this);
-alluserlist=(RecyclerView) findViewById(R.id.recycler);
+        alluserlist=(RecyclerView) findViewById(R.id.recycler);
         alluserlist.setHasFixedSize(true);
         alluserlist.setLayoutManager(new LinearLayoutManager(this));
- alluserdatabaseReference=FirebaseDatabase.getInstance().getReference().child("Trending").child("content");
+        alluserdatabaseReference=FirebaseDatabase.getInstance().getReference().child("Trending").child("content");
         alluserdatabaseReference.keepSynced(true);
 
 
@@ -401,23 +401,7 @@ alluserlist=(RecyclerView) findViewById(R.id.recycler);
 
     private void onSwipeLeft() {
     //here
-	Intent a;
-	 switch (head){
-                case "Homeis":a=new Intent(getApplicationContext(),Homeis.class);break;
-                case "Sports":a=new Intent(getApplicationContext(),NewsSports.class);break;
-                case "Politics":a=new Intent(getApplicationContext(),NewsPolitics.class);break;
-                case "Education":a=new Intent(getApplicationContext(),NewsEducation.class);break;
-                case "Gadgets":a=new Intent(getApplicationContext(),NewsGadgets.class);break;
-                case "International":a=new Intent(getApplicationContext(),NewsInternational.class);break;
-                case "Agriculture":a=new Intent(getApplicationContext(),NewsAgriculture.class);break;
-                case "Business":a=new Intent(getApplicationContext(),NewsBusiness.class);break;
-                case "Lifestyle":a=new Intent(getApplicationContext(),NewsLifestyle.class);break;
-                case "Entertainment":a=new Intent(getApplicationContext(),NewsEntertainment.class);break;
-                default:a=new Intent(getApplicationContext(),NewsSports.class);break;
-            }
-			startActivity(a);
-			CustomIntent.customType(this,"right-to-left");
-		
+	finish();
     }
 
     private void onSwipeTop() {
