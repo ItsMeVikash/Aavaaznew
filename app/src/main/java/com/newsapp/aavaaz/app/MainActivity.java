@@ -1,9 +1,17 @@
 package com.newsapp.aavaaz.app;
 
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -11,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.newsapp.aavaaz.app.secondpage.Homeis;
 
 import android.provider.Settings;
@@ -30,12 +39,16 @@ import com.newsapp.aavaaz.app.start.Start1;
 import java.util.HashMap;
 
 import maes.tech.intentanim.CustomIntent;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
     String pass = "123456789";
     TextView textView;
+
     private DatabaseReference mDatabase,mi,usersref;
     private FirebaseAuth mAuth;
     Dialog dialog;
@@ -51,7 +64,14 @@ public class MainActivity extends AppCompatActivity {
         longitude = super.getIntent().getExtras().getString("lon");
         //Toast.makeText(getApplicationContext(),city,Toast.LENGTH_SHORT).show();
         mAuth = FirebaseAuth.getInstance();
-
+        /////////////////////////////////////////////
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            NotificationChannel channel=new NotificationChannel("MyNotifications","MyNotifications",NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager manager=getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+        FirebaseMessaging.getInstance().subscribeToTopic("Aavaaz");
+        ////////////////////////////////////////////////////
         String id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID) + "@gmail.com";
         aid = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -128,7 +148,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    ////////////////////////////////////
+    private void showNotification(String title, String message) {
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder b = new NotificationCompat.Builder(getApplicationContext());
+        b.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setContentIntent(contentIntent);
+        NotificationManager notificationManager = (NotificationManager)getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1,b.build());
+    }
+
     private void go(){
+        ////////////////////////////////////////////////////////////////////////////////////////////
         Thread a=new Thread(){
             @Override
             public void run() {
@@ -153,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
            if(task.isSuccessful()){
-               go();
+             go();
            }
            else{register_user(aid, id, pass, latitude,longitude,city,state,country);
            }

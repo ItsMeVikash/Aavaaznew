@@ -253,12 +253,12 @@ public class Url extends AppCompatActivity implements GestureDetector.OnGestureL
     }
 
     private void onSwipeRight() {
-        ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Right swipe",Toast.LENGTH_SHORT).show();
 		web.goBack();
     }
 
     private void onSwipeLeft() {
-    
+        Toast.makeText(getApplicationContext(),"Left swipe",Toast.LENGTH_SHORT).show();
     }
 
     private void onSwipeTop() {

@@ -54,11 +54,12 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import android.Manifest;
 
-import com.newsapp.aavaaz.app.Home;  import com.newsapp.aavaaz.app.secondpage.NewsPolitics1;
+import com.newsapp.aavaaz.app.Home;
+import com.newsapp.aavaaz.app.secondpage.NewsGadgets;
 
 
 import com.newsapp.aavaaz.app.R;
-import com.newsapp.aavaaz.app.thirdpage.NewsPoliticsFull;
+import com.newsapp.aavaaz.app.thirdpage.NewsGadgetsFull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -69,7 +70,7 @@ import maes.tech.intentanim.CustomIntent;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class NewsPolitics extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
+public class NewsGadgets1 extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     FirebaseUser cu;
     String image1;
     ProgressDialog pd;
@@ -101,23 +102,23 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         super.onCreate(savedInstanceState);
         //==========================================================
    //==========================================================Webview
-        setContentView(R.layout.activity_news_politics);
+        setContentView(R.layout.activity_news_gadgets);
         urllink=findViewById(R.id.urllink);
 //        mAuth = FirebaseAuth.getInstance();
         urllink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(getApplicationContext(),"click",Toast.LENGTH_SHORT).show();
-//                Intent Browser=new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+                //                Intent Browser=new Intent(Intent.ACTION_VIEW,Uri.parse(url));
                 Intent Browser=new Intent(getApplicationContext(),Url.class);
                 Browser.putExtra("heading",heading.getText());
+               // Toast.makeText(getApplicationContext(),url,Toast.LENGTH_SHORT).show();
                 Browser.putExtra("url",url);
                 startActivity(Browser);
 
             }
         });
-
-
+//        Toast.makeText(getApplicationContext(),url,Toast.LENGTH_SHORT).show();
         // ================ DYNAMIC Content ===================== //
         DisplayMetrics displayMetrics=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -174,7 +175,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
 
 //[========================= Added Now
         //========================================
-  DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+  DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -202,7 +203,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
             @Override
             public void onClick(View v) {
                 Intent a=new Intent(getApplicationContext(),Home.class);
-				a.putExtra("ctegory","Politics");
+				a.putExtra("ctegory","Gadgets");
                 startActivity(a);
             }
         });
@@ -212,9 +213,9 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  if(ContextCompat.checkSelfPermission(NewsPolitics.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)
-                {ActivityCompat.requestPermissions(NewsPolitics.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);}     Bitmap bitmap=takescreen();
-               saveBitmap(bitmap);
+                if(ContextCompat.checkSelfPermission(NewsGadgets1.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)
+                {ActivityCompat.requestPermissions(NewsGadgets1.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);}     Bitmap bitmap=takescreen();
+                saveBitmap(bitmap);
                 shareit();
             }
         });
@@ -269,7 +270,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -311,7 +312,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Upvoted").child("Politics").child(in);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Upvoted").child("Misc").child(in);
 
         mDatabase.setValue("UP VOTED").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -326,7 +327,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Downvoted").child("Politics").child(in);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Downvoted").child("Misc").child(in);
 
         mDatabase.setValue("Down VOTED").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -466,214 +467,15 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
             }});
     }
 
-    public void getitimg(String in){
-        DatabaseReference mimage1 = FirebaseDatabase.getInstance().getReference().child("Sports").child(in).child("pic").child("id");
-        DatabaseReference mimage2 = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("pic").child("id");
-        DatabaseReference mimage3 = FirebaseDatabase.getInstance().getReference().child("International").child(in).child("pic").child("id");
-        DatabaseReference mimage4 = FirebaseDatabase.getInstance().getReference().child("Agriculture").child(in).child("pic").child("id");
-        DatabaseReference mimage5 = FirebaseDatabase.getInstance().getReference().child("Education").child(in).child("pic").child("id");
-        DatabaseReference mimage6 = FirebaseDatabase.getInstance().getReference().child("Business").child(in).child("pic").child("id");
-        DatabaseReference mimage7 = FirebaseDatabase.getInstance().getReference().child("Gadgets").child(in).child("pic").child("id");
-        DatabaseReference mimage8 = FirebaseDatabase.getInstance().getReference().child("Lifestyle").child(in).child("pic").child("id");
-        DatabaseReference mimage9 = FirebaseDatabase.getInstance().getReference().child("Entertainment").child(in).child("pic").child("id");
-        mimage1.keepSynced(true);
-        mimage2.keepSynced(true);
-        mimage3.keepSynced(true);
-        mimage4.keepSynced(true);
-        mimage5.keepSynced(true);
-        mimage6.keepSynced(true);
-        mimage7.keepSynced(true);
-        mimage8.keepSynced(true);
-        mimage9.keepSynced(true);
-        mimage1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage3.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage4.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage5.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage6.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage7.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage8.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mimage9.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                if(!dataSnapshot.exists()) {
-                }
-                else{
-                    final String image1 = dataSnapshot.getValue().toString();
-                    Picasso.get().load(image1).placeholder(R.drawable.slide1);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
     private void getimage() {
-//        load.setTitle("get image");
+//        load.setTitle("Wait");
 //        load.setMessage("Getting the latest news for you..");
 //        load.show();
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -685,8 +487,8 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                 else{String value = dataSnapshot.getValue(String.class);
                     i=Integer.parseInt(value);
                     String in=value;
-                    //getitimg(in);
-                    DatabaseReference mimage = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("pic").child("id");
+
+                    DatabaseReference mimage = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("pic").child("id");
                     mimage.keepSynced(true);
                     mimage.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -707,8 +509,8 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                                     public void onError(Exception e) {
                                         Picasso.get().load(image1).placeholder(R.drawable.slide1).into(img);
                                     }
-                                });
-                                load.dismiss();
+                                });load.dismiss();
+						
                             }
 							
 							//play();
@@ -737,7 +539,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
 		FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Sports");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -749,7 +551,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                 else{String value = dataSnapshot.getValue(String.class);
                     i=Integer.parseInt(value);
                     String in=value;
-                                DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("url");
+                                DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Sports").child(in).child("content").child("url");
                     mheading.keepSynced(true);
                     // Read from the database
                     mheading.addValueEventListener(new ValueEventListener() {
@@ -762,7 +564,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                             else{url = dataSnapshot.getValue(String.class);
                                 load.setMessage("Loading..");
                                 load.show();
-		//MediaController media=new MediaController(NewsPolitics.this);
+		//MediaController media=new MediaController(NewsGadgets.this);
 		//media.setAnchorView(////video);
 		//Uri uri=Uri.parse(url);
 
@@ -800,7 +602,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -813,7 +615,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                     i=Integer.parseInt(value);
                     String in=value;
 
-                    DatabaseReference mshortdesc = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("shortdesc");
+                    DatabaseReference mshortdesc = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("shortdesc");
                     mshortdesc.keepSynced(true);
 
                     mshortdesc.addValueEventListener(new ValueEventListener() {
@@ -852,7 +654,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -864,7 +666,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                 else{String value = dataSnapshot.getValue(String.class);
                     i=Integer.parseInt(value);
                     String in=value;
-                    DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("heading");
+                    DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("heading");
                     mheading.keepSynced(true);
                     // Read from the database
                     mheading.addValueEventListener(new ValueEventListener() {
@@ -899,7 +701,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -911,7 +713,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
                 else{String value = dataSnapshot.getValue(String.class);
                     i=Integer.parseInt(value);
                     String in=value;
-                    DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlsource");
+                    DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlsource");
                     mheading.keepSynced(true);
                     // Read from the database
                     mheading.addValueEventListener(new ValueEventListener() {
@@ -943,7 +745,7 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
     }
 private void getsourceurlr() {
         String in=i+"";
-        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlsource");
+        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlsource");
 // Read from the database
         mheading.keepSynced(true);
         mheading.addValueEventListener(new ValueEventListener() {
@@ -965,7 +767,7 @@ private void getsourceurlr() {
     }
 	
 private void getsourceurll() {   String in=i+"";
-        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlsource");
+        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlsource");
 // Read from the database
         mheading.keepSynced(true);
         mheading.addValueEventListener(new ValueEventListener() {
@@ -994,7 +796,7 @@ private void geturl() {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.keepSynced(true);
 
         mi.addValueEventListener(new ValueEventListener() {
@@ -1006,7 +808,7 @@ private void geturl() {
                 else{String value = dataSnapshot.getValue(String.class);
                     i=Integer.parseInt(value);
                     String in=value;
-                    DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlread");
+                    DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlread");
                     mheading.keepSynced(true);
                     // Read from the database
                     mheading.addValueEventListener(new ValueEventListener() {
@@ -1043,13 +845,13 @@ private void geturl() {
 //        load.setTitle("Wait");
 //        load.setMessage("Getting the latest news for you..");
 //        load.show();
-        //getitimg(in);
-        DatabaseReference mimage = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("pic").child("id");
+
+        DatabaseReference mimage = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("pic").child("id");
         mimage.keepSynced(true);
         mimage.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                               // This method is called once with the initial value and again
+                                // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if(!dataSnapshot.exists()){
 
@@ -1066,8 +868,7 @@ private void geturl() {
                         public void onError(Exception e) {
                             Picasso.get().load(image1).placeholder(R.drawable.slide1).into(img);
                         }
-                    });
-                    load.dismiss();
+                    });load.dismiss();
                 }
 
 
@@ -1085,7 +886,7 @@ private void geturl() {
 
     private void getshortdescr() {
         String in=i+"";
-        DatabaseReference mshortdesc = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("shortdesc");
+        DatabaseReference mshortdesc = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("shortdesc");
         mshortdesc.keepSynced(true);
 
         mshortdesc.addValueEventListener(new ValueEventListener() {
@@ -1107,19 +908,19 @@ private void geturl() {
     }
     private void getheadingr() {
         String in=i+"";
-        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("heading");
+        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("heading");
 // Read from the database
         mheading.keepSynced(true);
         mheading.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //load.dismiss();
+                
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if(!dataSnapshot.exists()){  FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         i++;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -1127,8 +928,7 @@ private void geturl() {
 
                 }
             }
-        }); Toast.makeText(getApplicationContext(),"No Files Left",
-                            LENGTH_SHORT).show();        }
+        }); Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();        }
                 else{String value = dataSnapshot.getValue(String.class);
                     heading.setText(value);}
             }
@@ -1140,13 +940,13 @@ private void geturl() {
         });
     }
 private void geturlr() {        String in=i+"";
-        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlread");
+        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlread");
 // Read from the database
         mheading.keepSynced(true);
         mheading.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-               
+                
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if(!dataSnapshot.exists()){ }
@@ -1166,13 +966,13 @@ private void geturlr() {        String in=i+"";
 //        load.setTitle("Wait");
 //        load.setMessage("Getting the latest news for you..");
 //        load.show();
-        //getitimg(in);
-        DatabaseReference mimage = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("pic").child("id");
+
+        DatabaseReference mimage = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("pic").child("id");
         mimage.keepSynced(true);
         mimage.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                               // This method is called once with the initial value and again
+                                // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if(!dataSnapshot.exists()){
 
@@ -1189,8 +989,8 @@ private void geturlr() {        String in=i+"";
                         public void onError(Exception e) {
                             Picasso.get().load(image1).placeholder(R.drawable.slide1).into(img);
                         }
-                    });
-                    load.dismiss();
+                    });load.dismiss();
+			
                 }
 
 
@@ -1208,7 +1008,7 @@ private void geturlr() {        String in=i+"";
 
     private void getshortdescl() {
         String in=i+"";
-        DatabaseReference mshortdesc = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("shortdesc");
+        DatabaseReference mshortdesc = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("shortdesc");
         mshortdesc.keepSynced(true);
 
         mshortdesc.addValueEventListener(new ValueEventListener() {
@@ -1230,20 +1030,19 @@ private void geturlr() {        String in=i+"";
     }
     private void getheadingl() {
         String in=i+""; if(i==1){Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();       }
-        else{
-        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("heading");
+        else{DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("heading");
 // Read from the database
         mheading.keepSynced(true);
         mheading.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //load.dismiss();
+                
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if(!dataSnapshot.exists()){ FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
-        if(i>1)i--;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        if(i>1)i--; 
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -1251,8 +1050,7 @@ private void geturlr() {        String in=i+"";
 
                 }
             }
-        });Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show(); //left();
-		}
+        }); Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();       }
                 else{String value = dataSnapshot.getValue(String.class);
                     heading.setText(value);}
             }
@@ -1262,11 +1060,10 @@ private void geturlr() {        String in=i+"";
                 // Failed to read value
             }
         });
-    }
+    }}
 
-	}
 private void geturlll() {        String in=i+"";
-        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlread");
+        DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlread");
 // Read from the database
         mheading.keepSynced(true);
         mheading.addValueEventListener(new ValueEventListener() {
@@ -1344,12 +1141,12 @@ private void geturlll() {        String in=i+"";
         return result;
     }
 
-      private void onSwipeBottom() {
+    private void onSwipeBottom() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
 
 
         decrementi();
-  getheadingr();		 Intent a=new Intent(getApplicationContext(),NewsPolitics1.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+  getheadingr();		 Intent a=new Intent(getApplicationContext(),NewsGadgets.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
 		startActivity(a);
         CustomIntent.customType(this,"up-to-bottom");
     }
@@ -1357,7 +1154,7 @@ private void geturlll() {        String in=i+"";
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 		if(i>1)i--;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
 
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -1371,19 +1168,20 @@ private void geturlll() {        String in=i+"";
 
     }
 
-      private void onSwipeTop() {
+     private void onSwipeTop() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
         incrementi(); getheadingl();
-		 Intent a=new Intent(getApplicationContext(),NewsPolitics1.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+		 Intent a=new Intent(getApplicationContext(),NewsGadgets.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
 		startActivity(a);
         CustomIntent.customType(this,"bottom-to-up");
     }
+
 
     private void incrementi() {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         i++;
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Politics");
+        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -1393,10 +1191,10 @@ private void geturlll() {        String in=i+"";
             }
         });
     }
-    private void onSwipeRight() {
-        Intent a=new Intent(getApplicationContext(),Home.class); 
-		a.putExtra("ctegory","Politics");
-		// a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+   
+private void onSwipeRight() {
+        Intent a=new Intent(getApplicationContext(),Home.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+		a.putExtra("category","Gadgets");
 		startActivity(a);
         CustomIntent.customType(this,"right-to-left");
     }
@@ -1409,14 +1207,14 @@ private void geturlll() {        String in=i+"";
 				   CustomIntent.customType(this,"left-to-right");
     }
     private void right(){
-               Intent a=new Intent(getApplicationContext(),Homeis.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
+               Intent a=new Intent(getApplicationContext(),NewsLifestyle.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
            CustomIntent.customType(this,"left-to-right");
     }
     private void left(){
       
         ////Toast.makeText(getApplicationContext(),"Top swipe",//Toast.LENGTH_SHORT).show();
-        Intent a=new Intent(getApplicationContext(),NewsBusiness.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
+        Intent a=new Intent(getApplicationContext(),NewsAgriculture.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         CustomIntent.customType(this,"right-to-left");
     }
 
@@ -1433,7 +1231,7 @@ private void geturlll() {        String in=i+"";
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        Intent a = new Intent(getApplicationContext(),NewsPoliticsFull.class);
+        Intent a = new Intent(getApplicationContext(),NewsGadgetsFull.class);
         a.putExtra("k",i);
         a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         return true;

@@ -54,8 +54,8 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import android.Manifest;
 
-import com.newsapp.aavaaz.app.Home;  import com.newsapp.aavaaz.app.secondpage.NewsPolitics1;
-
+import com.newsapp.aavaaz.app.Home;
+import com.newsapp.aavaaz.app.secondpage.NewsPolitics;
 
 import com.newsapp.aavaaz.app.R;
 import com.newsapp.aavaaz.app.thirdpage.NewsPoliticsFull;
@@ -69,7 +69,7 @@ import maes.tech.intentanim.CustomIntent;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class NewsPolitics extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
+public class NewsPolitics1 extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     FirebaseUser cu;
     String image1;
     ProgressDialog pd;
@@ -212,8 +212,8 @@ public class NewsPolitics extends AppCompatActivity implements GestureDetector.O
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  if(ContextCompat.checkSelfPermission(NewsPolitics.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)
-                {ActivityCompat.requestPermissions(NewsPolitics.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);}     Bitmap bitmap=takescreen();
+                  if(ContextCompat.checkSelfPermission(NewsPolitics1.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)
+                {ActivityCompat.requestPermissions(NewsPolitics1.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);}     Bitmap bitmap=takescreen();
                saveBitmap(bitmap);
                 shareit();
             }
@@ -1263,7 +1263,6 @@ private void geturlr() {        String in=i+"";
             }
         });
     }
-
 	}
 private void geturlll() {        String in=i+"";
         DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Politics").child(in).child("content").child("urlread");
@@ -1344,12 +1343,12 @@ private void geturlll() {        String in=i+"";
         return result;
     }
 
-      private void onSwipeBottom() {
+   private void onSwipeBottom() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
 
 
         decrementi();
-  getheadingr();		 Intent a=new Intent(getApplicationContext(),NewsPolitics1.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+  getheadingr();		 Intent a=new Intent(getApplicationContext(),NewsPolitics.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
 		startActivity(a);
         CustomIntent.customType(this,"up-to-bottom");
     }
@@ -1371,10 +1370,10 @@ private void geturlll() {        String in=i+"";
 
     }
 
-      private void onSwipeTop() {
+ private void onSwipeTop() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
         incrementi(); getheadingl();
-		 Intent a=new Intent(getApplicationContext(),NewsPolitics1.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+		 Intent a=new Intent(getApplicationContext(),NewsPolitics.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
 		startActivity(a);
         CustomIntent.customType(this,"bottom-to-up");
     }

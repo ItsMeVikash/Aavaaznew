@@ -54,7 +54,7 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import android.Manifest;
 
-import com.newsapp.aavaaz.app.Home;
+import com.newsapp.aavaaz.app.Home;  import com.newsapp.aavaaz.app.secondpage.NewsGadgets1;
 
 
 import com.newsapp.aavaaz.app.R;
@@ -1028,7 +1028,8 @@ private void geturlr() {        String in=i+"";
         });
     }
     private void getheadingl() {
-        String in=i+"";
+        String in=i+""; if(i==1){Toast.makeText(getApplicationContext(),"No Files Left",LENGTH_SHORT).show();       }
+        else{
         DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("heading");
 // Read from the database
         mheading.keepSynced(true);
@@ -1040,7 +1041,7 @@ private void geturlr() {        String in=i+"";
                 // whenever data at this location is updated.
                 if(!dataSnapshot.exists()){ FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
-        i--;
+        if(i>1)i--;
         DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -1061,7 +1062,7 @@ private void geturlr() {        String in=i+"";
         });
     }
 
-private void geturlll() {        String in=i+"";
+}private void geturlll() {        String in=i+"";
         DatabaseReference mheading = FirebaseDatabase.getInstance().getReference().child("Misc").child(in).child("content").child("urlread");
 // Read from the database
         mheading.keepSynced(true);
@@ -1140,21 +1141,19 @@ private void geturlll() {        String in=i+"";
         return result;
     }
 
-    private void onSwipeTop() {
+      private void onSwipeBottom() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
 
 
         decrementi();
-        getheadingr();
-		geturlr(); getsourceurlr();
-        getimager();
-        getshortdescr();
+  getheadingr();		 Intent a=new Intent(getApplicationContext(),NewsGadgets1.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+		startActivity(a);
+        CustomIntent.customType(this,"up-to-bottom");
     }
-
     private void decrementi() {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
-		i--;
+		if(i>1)i--;
         DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Last").child("Misc");
 
         mi.setValue(i+"").addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -1169,15 +1168,12 @@ private void geturlll() {        String in=i+"";
 
     }
 
-    private void onSwipeBottom() {
+      private void onSwipeTop() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
-        //Toast.makeText(getApplicationContext(),"Sub Topic",//Toast.LENGTH_SHORT).show();
-        incrementi();
-        getheadingl();
-		geturlll(); getsourceurll();
-        getimagel();
-        getshortdescl();
-
+        incrementi(); getheadingl();
+		 Intent a=new Intent(getApplicationContext(),NewsGadgets1.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
+		startActivity(a);
+        CustomIntent.customType(this,"bottom-to-up");
     }
 
     private void incrementi() {
@@ -1199,8 +1195,7 @@ private void onSwipeRight() {
         Intent a=new Intent(getApplicationContext(),Home.class);    // a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  
 		a.putExtra("category","Gadgets");
 		startActivity(a);
-        //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
-        CustomIntent.customType(this,"left-to-right");
+        CustomIntent.customType(this,"right-to-left");
     }
     private void onSwipeLeft() {
         ////Toast.makeText(getApplicationContext(),"Top swipe",//Toast.LENGTH_SHORT).show();
@@ -1208,19 +1203,18 @@ private void onSwipeRight() {
                 Browser.putExtra("heading",heading.getText());
                 Browser.putExtra("url",url);
                 startActivity(Browser);
-				CustomIntent.customType(this,"right-to-left");
+				   CustomIntent.customType(this,"left-to-right");
     }
     private void right(){
                Intent a=new Intent(getApplicationContext(),NewsLifestyle.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
-        CustomIntent.customType(this,"right-to-left");
+           CustomIntent.customType(this,"left-to-right");
     }
     private void left(){
       
         ////Toast.makeText(getApplicationContext(),"Top swipe",//Toast.LENGTH_SHORT).show();
         Intent a=new Intent(getApplicationContext(),NewsAgriculture.class);    a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
-        //overridePendingTransition(R.anim.slideintop,R.anim.slideoutdown);
-        CustomIntent.customType(this,"left-to-right");
+        CustomIntent.customType(this,"right-to-left");
     }
 
     @Override

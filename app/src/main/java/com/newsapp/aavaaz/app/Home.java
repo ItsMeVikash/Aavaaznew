@@ -104,6 +104,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static bolts.Task.delay;
+
 public class Home extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
     String pass = "123456789";
     static String url;
@@ -401,6 +403,7 @@ public class Home extends AppCompatActivity implements GestureDetector.OnGesture
 
     private void onSwipeLeft() {
     //here
+        delay(20);
 	finish();
     }
 
