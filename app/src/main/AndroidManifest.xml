@@ -116,6 +116,44 @@
         <activity
             android:name="com.newsapp.aavaaz.app.secondpage.NewsPolitics"
             android:screenOrientation="portrait" />
+			
+			
+			
+			   <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsAgriculture1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.Homeis1"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsSports1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsBusiness1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsEducation1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsEntertainment1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsInternational1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsGadgets1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsLifestyle1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.newsapp.aavaaz.app.secondpage.NewsPolitics1"
+            android:screenOrientation="portrait" />
+     
+			
+			
+			
         <activity
             android:name="com.newsapp.aavaaz.app.thirdpage.NewsHomeisFull"
             android:parentActivityName="com.newsapp.aavaaz.app.secondpage.Homeis"
