@@ -69,6 +69,7 @@ import java.io.IOException;
 
 import maes.tech.intentanim.CustomIntent;
 
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class Homeis extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
@@ -135,7 +136,7 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
         double screenInches = Math.sqrt(x+y);
 //        Toast.makeText(getApplicationContext(),screenInches+"",Toast.LENGTH_SHORT).show();
 
-        int imgh=(int)(screenh* .35);
+        int imgh=(int)(screenh* .40);
 //        Toast.makeText(getApplicationContext(),imgh+"",Toast.LENGTH_SHORT).show();
         int texth1=(int)(hi*4.0);
 //        Toast.makeText(getApplicationContext(),texth1+"",Toast.LENGTH_SHORT).show();
@@ -203,15 +204,16 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
         });
 
         //==========================================
-        imageView=findViewById(R.id.button2);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent a=new Intent(getApplicationContext(),Home.class);
-				a.putExtra("ctegory","Homeis");
-                startActivity(a);
-            }
-        });
+//        imageView=findViewById(R.id.button2);
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent a=new Intent(getApplicationContext(),Home.class);
+//				a.putExtra("ctegory","Homeis");
+//                startActivity(a);
+//            }
+//        });
+
         //sendNotification(getApplicationContext());
         share=findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
@@ -246,7 +248,8 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
         load=new ProgressDialog(this);
 
         shortdesc=findViewById(R.id.desc);
-//        mAuth = FirebaseAuth.getInstance();
+        shortdesc.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        //        mAuth = FirebaseAuth.getInstance();
         Button tag = findViewById(R.id.tags);
 
         tag.setOnClickListener(new View.OnClickListener() {
@@ -256,7 +259,6 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
                 makedialog();
 
             }});
-
 
 
 //        mAuth=FirebaseAuth.getInstance();

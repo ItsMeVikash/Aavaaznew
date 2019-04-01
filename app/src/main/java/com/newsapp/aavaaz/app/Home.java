@@ -397,7 +397,7 @@ public class Home extends AppCompatActivity implements GestureDetector.OnGesture
     }
 
     private void onSwipeRight() {
-        ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),"Right swipe",Toast.LENGTH_SHORT).show();
 		
     }
 

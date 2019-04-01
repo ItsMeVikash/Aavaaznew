@@ -67,6 +67,7 @@ import java.io.IOException;
 
 import maes.tech.intentanim.CustomIntent;
 
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class NewsSports extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener {
@@ -130,7 +131,7 @@ public class NewsSports extends AppCompatActivity implements GestureDetector.OnG
         double y = Math.pow(hi, 2);
         double screenInches = Math.sqrt(x+y);
 
-        int imgh=(int)(screenh* .35);
+        int imgh=(int)(screenh* .40);
         int texth1=(int)(hi*4.0);
         int texth2=(int)(hi*3.75);
 //        Toast.makeText(getApplicationContext(),texth2+" "+texth1+"",Toast.LENGTH_SHORT).show();
@@ -196,15 +197,15 @@ public class NewsSports extends AppCompatActivity implements GestureDetector.OnG
 
 
         //==========================================
-        imageView=findViewById(R.id.button2);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent a=new Intent(getApplicationContext(),Home.class);
-				a.putExtra("ctegory","Sports");
-                startActivity(a);
-            }
-        });
+//        imageView=findViewById(R.id.button2);
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent a=new Intent(getApplicationContext(),Home.class);
+//				a.putExtra("ctegory","Sports");
+//                startActivity(a);
+//            }
+//        });
         //sendNotification(getApplicationContext());
 
         share=findViewById(R.id.share);
@@ -238,6 +239,8 @@ public class NewsSports extends AppCompatActivity implements GestureDetector.OnG
         load=new ProgressDialog(this);
 
         shortdesc=findViewById(R.id.desc);
+        shortdesc.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
 //        mAuth = FirebaseAuth.getInstance();
  Button tag = findViewById(R.id.tags);
 
