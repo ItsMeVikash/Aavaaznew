@@ -4,6 +4,9 @@
     <string name="settings_themes_default" translatable="false">@string/settings_themes_dark_value</string>
     <string name="settings_themes_dark_label">Dark</string>
     <string name="settings_themes_dark_value">dark</string>
+    <string name="facebook_app_id">842986992713236</string>
+    <string name="fb_login_protocol_scheme">842986992713236</string>
+    
 
 
 </resources>
