@@ -59,8 +59,11 @@ gestureDetector = new GestureDetector(this);
 
         ImageView image =findViewById(R.id.image);
         Glide.with(this).asGif().load(R.drawable.first2).into(image);
-        // Glide.with(this).load(getImage("first2")).into(image);
-
+      // Glide.with(this).load(getImage("first2")).into(image);
+        //Try =========================
+        //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(image);
+        //Glide.with(this).load(R.raw.first2).into(imageViewTarget);
+        //===============================
 }
 
     private void loginUser(final String id, String password) {
