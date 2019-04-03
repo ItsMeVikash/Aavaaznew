@@ -59,7 +59,7 @@ gestureDetector = new GestureDetector(this);
 
         ImageView image =findViewById(R.id.image);
         Glide.with(this).asGif().load(R.drawable.first2).into(image);
-        // Glide.with(this).load(getImage("first2")).into(muhGif)
+        // Glide.with(this).load(getImage("first2")).into(image);
 
 }
 
