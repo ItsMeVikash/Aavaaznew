@@ -42,6 +42,10 @@ gestureDetector = new GestureDetector(this);
         ImageView image=findViewById(R.id.image);
         Glide.with(this).asGif().load(R.drawable.first1).into(image);
         // Glide.with(this).load(getImage("first1")).into(image);
+        //Try =========================
+        //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(image);
+        //Glide.with(this).load(R.raw.first1).into(imageViewTarget);
+        //===============================
     }    @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
         return false;
