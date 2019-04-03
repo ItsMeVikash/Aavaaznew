@@ -125,7 +125,7 @@ gestureDetector = new GestureDetector(this);
 
     private void onSwipeLeft() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
-        Intent a=new Intent(getApplicationContext(),Start3.class);
+        Intent a=new Intent(getApplicationContext(),Start4.class);
         a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         CustomIntent.customType(this,"left-to-right");
 
