@@ -240,9 +240,9 @@ public class NewsPolitics1 extends AppCompatActivity implements GestureDetector.
         load=new ProgressDialog(this);
 
         shortdesc=findViewById(R.id.desc);
-        shortdesc.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+//        shortdesc.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
 
-//        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         Button tag = findViewById(R.id.tags);
 
         tag.setOnClickListener(new View.OnClickListener() {

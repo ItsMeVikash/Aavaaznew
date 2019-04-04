@@ -248,8 +248,8 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
         load=new ProgressDialog(this);
 
         shortdesc=findViewById(R.id.desc);
-        shortdesc.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
-        //        mAuth = FirebaseAuth.getInstance();
+//        shortdesc.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+               mAuth = FirebaseAuth.getInstance();
         Button tag = findViewById(R.id.tags);
 
         tag.setOnClickListener(new View.OnClickListener() {
