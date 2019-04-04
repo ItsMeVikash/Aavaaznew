@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -15,6 +16,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 
@@ -49,7 +51,9 @@ public static String aid,id;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start4);
-
+        VideoView videoView=findViewById(R.id.image);
+        videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first1));
+        videoView.start();
         mAuth = FirebaseAuth.getInstance();
 
         id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID) + "@gmail.com";
@@ -57,13 +61,6 @@ public static String aid,id;
 gestureDetector = new GestureDetector(this);
 
 
-        ImageView image =findViewById(R.id.image);
-        Glide.with(this).asGif().load(R.drawable.first2).into(image);
-      // Glide.with(this).load(getImage("first2")).into(image);
-        //Try =========================
-        //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(image);
-        //Glide.with(this).load(R.raw.first2).into(imageViewTarget);
-        //===============================
 }
 
     private void loginUser(final String id, String password) {

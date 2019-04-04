@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.newsapp.aavaaz.app.R;
@@ -37,15 +39,11 @@ private GestureDetector gestureDetector;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start2);
- 
+    VideoView videoView=findViewById(R.id.image);
+    videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first1));
+    videoView.start();
 gestureDetector = new GestureDetector(this);
         ImageView image=findViewById(R.id.image);
-        Glide.with(this).asGif().load(R.drawable.first1).into(image);
-        // Glide.with(this).load(getImage("first1")).into(image);
-        //Try =========================
-        //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(image);
-        //Glide.with(this).load(R.raw.first1).into(imageViewTarget);
-        //===============================
     }    @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
         return false;
