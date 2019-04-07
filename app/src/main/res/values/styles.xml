@@ -17,8 +17,8 @@
 
 <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ff4000</item>
-        <item name="colorPrimaryDark">#ff4000</item>
+        <item name="colorPrimary">#505078</item>
+        <item name="colorPrimaryDark">#505078</item>
         <item name="SwipeFlingStyle">@style/SwipeFling</item>
         <item name="android:navigationBarColor">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>

@@ -66,7 +66,7 @@ public static String aid,id;
             }
         });
         VideoView videoView=findViewById(R.id.image);
-        videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first1));
+        videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first2));
         videoView.start();
         mAuth = FirebaseAuth.getInstance();
 
@@ -176,7 +176,7 @@ gestureDetector = new GestureDetector(this);
 
     private void onSwipeRight() {
         ////Toast.makeText(getApplicationContext(),"Right swipe",//Toast.LENGTH_SHORT).show();
-        Intent a=new Intent(getApplicationContext(),Start3.class);
+        Intent a=new Intent(getApplicationContext(),Start2.class);
         a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);  startActivity(a);
         CustomIntent.customType(this,"right-to-left");
 

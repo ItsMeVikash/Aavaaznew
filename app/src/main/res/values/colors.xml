@@ -10,8 +10,8 @@
     <color name="colorPrimaryDarkInverse">#00838F</color>
 
     <!--Accent Color-->
-    <color name="colorAccent">#ef5350</color>
-    <color name="colorAccentInverse">#ef5350</color>
+    <color name="colorAccent">#505078</color>
+    <color name="colorAccentInverse">#505078</color>
 
     <color name="textColor">#ffffff</color>
 
