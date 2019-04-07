@@ -11,7 +11,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -39,6 +41,18 @@ private GestureDetector gestureDetector;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start2);
+        TextView prev=findViewById(R.id.prev);prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSwipeRight();
+            }
+        });
+        TextView next=findViewById(R.id.next);next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSwipeLeft();
+            }
+        });
     VideoView videoView=findViewById(R.id.image);
     videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first1));
     videoView.start();
