@@ -11,9 +11,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/start"
             android:id="@+id/image"
-            android:src="@drawable/start3is"/>
+            />
 
         <!--<ImageView-->
             <!--android:layout_width="match_parent"-->
