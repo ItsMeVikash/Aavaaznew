@@ -138,9 +138,10 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
 
         int imgh=(int)(screenh* .40);
 //        Toast.makeText(getApplicationContext(),imgh+"",Toast.LENGTH_SHORT).show();
-        int texth1=(int)(hi*4.0);
-//        Toast.makeText(getApplicationContext(),texth1+"",Toast.LENGTH_SHORT).show();
-        int texth2=(int)(hi*3.75);
+
+        int texth1=Math.min((int)(hi*4),17);
+        int texth2=Math.min((int)(hi*3.75),15);
+
 //        Toast.makeText(getApplicationContext(),texth2+" "+texth1+"",Toast.LENGTH_SHORT).show();
         int texth3=(int)(hi*4.25);
         int texth4=(int)(hi*3.5);

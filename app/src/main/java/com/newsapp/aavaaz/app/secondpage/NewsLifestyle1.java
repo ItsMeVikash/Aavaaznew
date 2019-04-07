@@ -134,8 +134,8 @@ public class NewsLifestyle1 extends AppCompatActivity implements GestureDetector
         double screenInches = Math.sqrt(x+y);
 
         int imgh=(int)(screenh* .40);
-        int texth1=(int)(hi*4.0);
-        int texth2=(int)(hi*3.75);
+        int texth1=Math.min((int)(hi*4),17);
+        int texth2=Math.min((int)(hi*3.75),15);
 //        Toast.makeText(getApplicationContext(),texth2+" "+texth1+"",Toast.LENGTH_SHORT).show();
         int texth4=(int)(hi*3.5);
 
