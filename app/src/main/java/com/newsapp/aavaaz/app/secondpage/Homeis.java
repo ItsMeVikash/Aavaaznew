@@ -1477,9 +1477,7 @@ private void onSwipeRight() {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        tap++;
-        if(tap==1){Toast.makeText(getApplicationContext(),"Press Back Button Once more ..", LENGTH_SHORT).show();}
-        if(tap>1){finish(); System.exit(0);}
+        finish(); System.exit(0);
     }
 
 
