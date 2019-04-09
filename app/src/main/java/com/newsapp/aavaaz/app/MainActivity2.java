@@ -47,7 +47,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
+import static java.lang.Thread.sleep;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -190,16 +190,25 @@ public class MainActivity2 extends AppCompatActivity {
      * and toggling the buttons
      */
     private void updateLocationUI() {
-        if (mCurrentLocation != null) {
+        Thread a=new Thread(){
+            @Override
+            public void run() {
+                try{
+                   sleep(100);
+                }
+                catch (Exception e){e.printStackTrace();}
+                finally {
+                    ////=====================================
+                    if (mCurrentLocation != null) {
 
-            txtLocationResult.setText("Lat: " + mCurrentLocation.getLatitude() + ", " + "Lng: " + mCurrentLocation.getLongitude());
+            //txtLocationResult.setText("Lat: " + mCurrentLocation.getLatitude() + ", " + "Lng: " + mCurrentLocation.getLongitude());
             //Toast.makeText(getApplicationContext(),txtLocationResult+"",Toast.LENGTH_SHORT).show();
-            txtla=mCurrentLocation.getLatitude()+"";
-            txtlo=mCurrentLocation.getLongitude()+"";
+            //txtla=mCurrentLocation.getLatitude()+"";
+            //txtlo=mCurrentLocation.getLongitude()+"";
 
             Intent a=new Intent(getApplicationContext(),MainActivity.class);
-            a.putExtra("lat",txtla);
-            a.putExtra("lon",txtlo);
+            a.putExtra("lat",mCurrentLocation.getLatitude()+"";);
+            a.putExtra("lon",mCurrentLocation.getLongitude()+"");
             startActivity(a);
 
             // giving a blink animation on TextView
@@ -208,8 +217,19 @@ public class MainActivity2 extends AppCompatActivity {
 
             // location last updated time
             //   txtUpdatedOn.setText("Last updated on: " + mLastUpdateTime);
-        }else{        }
+        }else{   
+            Intent a=new Intent(getApplicationContext(),MainActivity.class);
+            a.putExtra("lat","1.0");
+            a.putExtra("lon","1.0");
+            startActivity(a);     }
 
+                    //=======================================
+                }
+            }
+        };
+        a.start();
+
+        
         // toggleButtons();
     }
 
