@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -67,7 +68,11 @@ public static String aid,id;
         });
         VideoView videoView=findViewById(R.id.image);
         videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first2));
-        videoView.start();
+       videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+  public void onPrepared(MediaPlayer mp) {
+    videoView.start();
+  }
+});
         mAuth = FirebaseAuth.getInstance();
 
         id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID) + "@gmail.com";
