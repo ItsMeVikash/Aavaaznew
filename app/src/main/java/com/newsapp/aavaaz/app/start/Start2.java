@@ -1,6 +1,7 @@
 package com.newsapp.aavaaz.app.start;
 
 import android.app.Application;
+import android.media.MediaPlayer;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -55,7 +56,11 @@ private GestureDetector gestureDetector;
         });
     VideoView videoView=findViewById(R.id.image);
     videoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.first1));
+         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+  public void onPrepared(MediaPlayer mp) {
     videoView.start();
+  }
+});
 gestureDetector = new GestureDetector(this);
         ImageView image=findViewById(R.id.image);
     }    @Override
