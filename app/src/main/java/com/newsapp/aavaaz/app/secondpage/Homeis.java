@@ -96,7 +96,7 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
     boolean notify1=false;
     String value,url2;
     DatabaseReference mcheck;
-	RelativeView mview;
+	RelativeLayout mview;
     public static int i = 1, Stat = 0, tap = 0;
 	VideoView video;
     @Override
