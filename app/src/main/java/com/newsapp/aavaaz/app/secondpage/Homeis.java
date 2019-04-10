@@ -96,12 +96,15 @@ public class Homeis extends AppCompatActivity implements GestureDetector.OnGestu
     boolean notify1=false;
     String value,url2;
     DatabaseReference mcheck;
+	RelativeView mview;
     public static int i = 1, Stat = 0, tap = 0;
 	VideoView video;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+	    mview=findViewById(R.id.topbar);
+		mview.setVisibility(View.INVISIBLE);
         //==========================================================
    //==========================================================Webview
         setContentView(R.layout.activity_news_homeis);
@@ -1457,7 +1460,8 @@ private void onSwipeRight() {
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
-        return false;
+		mview.setVisibility(View.VISIBLE);       
+	   return true;
     }
 
     @Override
