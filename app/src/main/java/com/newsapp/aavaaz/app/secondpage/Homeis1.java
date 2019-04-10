@@ -98,7 +98,7 @@ public class Homeis1 extends AppCompatActivity implements GestureDetector.OnGest
     DatabaseReference mcheck;
     public static int i = 1, Stat = 0, tap = 0;
 	VideoView video;
-	RelativeView mview;
+	RelativeLayout mview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
