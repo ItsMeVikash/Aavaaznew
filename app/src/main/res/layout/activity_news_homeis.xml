@@ -9,14 +9,25 @@
     tools:context=".secondpage.Homeis">
 
 
-    <!--<ImageView-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:background="@drawable/home"-->
-        <!--android:padding="8dp" />-->
-
+  <RelativeLayout
+        android:id="@+id/topbar"
+		android:background="#3c3c44"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+		<ImageView
+        android:id="@+id/button2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/home"
+        android:padding="8dp" />
+</RelativeLayout>
+    <ImageView
+        android:id="@+id/slide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        />
     <ImageView
         android:id="@+id/slide"
         android:layout_width="match_parent"
